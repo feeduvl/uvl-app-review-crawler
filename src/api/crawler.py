@@ -27,9 +27,7 @@ class AppReviewCrawler:
         result = filter_valid_reviews(result, blacklist_reviews)
         result = clean_reviews(result)
         self.crawled_data = result
-        
-        return self.crawled_data
-            
+                    
     def get_documents(self, collection_name):
         documents = []
         sep = os.linesep + '###'
