@@ -1,7 +1,7 @@
 from datetime import datetime 
 import os 
 from google_play_scraper import reviews_all, Sort
-from src.api.utils import clean_reviews, filter_reviews_by_date, scale_review_data_set, scale_reviews, filter_valid_reviews
+from src.api.utils import clean_reviews, filter_reviews_by_date, scale_review_data_set, scale_reviews, filter_valid_reviews, app_reviews_replace_emojis, app_reviews_replace_urls
 class AppReviewCrawler:
     def __init__(self) -> None:
         self.crawled_data = []
@@ -19,9 +19,9 @@ class AppReviewCrawler:
         )
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
         if(replace_emojis == True):
-            result = replace_emojis(result)
+            result = app_reviews_replace_emojis(result)
         if(replace_urls == True):
-            result = replace_urls(result)
+            result = app_reviews_replace_urls(result)
         result = scale_reviews(result, min_length_review)
         result = scale_review_data_set(result, new_limit)
         result = filter_valid_reviews(result, blacklist_reviews)

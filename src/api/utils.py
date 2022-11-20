@@ -52,12 +52,12 @@ def filter_reviews_by_date(date_from_str, date_to_str, app_reviews):
             filtered_reviews.append(app_reviews[i])
     return filtered_reviews
 
-def replace_urls(app_reviews):
+def app_reviews_replace_urls(app_reviews):
     for i in range(len(app_reviews)):
         app_reviews[i]['content'] = re.sub(r'http\S+', '', app_reviews[i]['content'])
     return app_reviews
 
-def replace_emojis(app_review):     
+def app_reviews_replace_emojis(app_review):     
     for i in range(len(app_review)):
         del app_review[i]['at']
         app_review[i]['content'] = emoji.get_emoji_regexp().sub('', app_review[i]['content'])        
