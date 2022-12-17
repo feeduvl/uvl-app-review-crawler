@@ -6,4 +6,4 @@ COPY . .
 RUN pip3 install --no-cache-dir --upgrade pip -r requirements.txt
 
 EXPOSE 9661 
-CMD ["uwsgi", "./wsgi.ini"]
+CMD ["python3", "./app.py"]
