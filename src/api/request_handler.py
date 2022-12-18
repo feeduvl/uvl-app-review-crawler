@@ -15,7 +15,7 @@ class RequestHandler:
         dataset_name = self.request_content['dataset_name']
         date_from = self.request_content['date_from']
         date_to = self.request_content['date_to']
-        post_selection = self.request_content['postselection']
+        post_selection = self.request_content['post_selection']
         new_limit = int(self.request_content['new_limit'])
         
         min_length_reviews = self.request_content['min_length_posts']
