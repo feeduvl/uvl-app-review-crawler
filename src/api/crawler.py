@@ -15,7 +15,7 @@ class AppReviewCrawler:
         result = reviews_all(
             app_id,
             lang=post_selection,
-            Sort=Sort.NEWEST
+            sort=Sort.NEWEST
         )
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
         if(replace_emojis == True):
