@@ -2,4 +2,3 @@ Flask==2.0.2
 emoji==1.6.3
 google-play-scraper==1.2.2
 requests==2.6.0
-waitress==2.1.2
