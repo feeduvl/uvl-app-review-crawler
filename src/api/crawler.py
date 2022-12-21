@@ -1,6 +1,7 @@
 from datetime import datetime 
 import os 
 from google_play_scraper import reviews_all, Sort
+from src.flask_setup import app 
 from src.api.utils import clean_reviews, filter_reviews_by_date, scale_review_data_set, scale_reviews, filter_valid_reviews, app_reviews_replace_emojis, app_reviews_replace_urls
 class AppReviewCrawler:
     def __init__(self) -> None:
@@ -26,6 +27,7 @@ class AppReviewCrawler:
         result = scale_review_data_set(result, new_limit)
         result = filter_valid_reviews(result, blacklist_reviews)
         result = clean_reviews(result)
+        app.logger.info(result)
         self.crawled_data = result
                     
     def get_documents(self, collection_name):
@@ -36,4 +38,5 @@ class AppReviewCrawler:
             document_id = f'{collection_name}_{date}'
             text = dataset.get("score") + sep + dataset.get("content") + sep 
             documents.append({"id": document_id, "text": text})
+        app.logger.info(documents)
         return documents
