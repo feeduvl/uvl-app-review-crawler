@@ -43,8 +43,8 @@ def clean_reviews(app_reviews):
     return app_reviews
 
 def filter_reviews_by_date(date_from_str, date_to_str, app_reviews):
-    from_date = datetime.strptime(date_from_str, "%d/m/%Y")
-    to_date = datetime.strptime(date_to_str, "%d/%m/%Y")
+    from_date = datetime.strptime(date_from_str, "%m/%d/%Y")
+    to_date = datetime.strptime(date_to_str, "%m/%d/%Y")
     filtered_reviews = []
     for i in range(0, len(app_reviews)):
         review_date = app_reviews[i]['at']
