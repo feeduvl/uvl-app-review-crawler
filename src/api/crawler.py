@@ -2,7 +2,7 @@ from datetime import datetime
 import os 
 from google_play_scraper import reviews_all, Sort
 from src.flask_setup import app 
-from src.api.utils import clean_reviews, filter_reviews_by_date, scale_review_data_set, scale_reviews, filter_valid_reviews, app_reviews_replace_emojis, app_reviews_replace_urls
+from src.api.utils import clean_reviews, filter_reviews_by_date, scale_review_data_set, scale_reviews, filter_valid_reviews, app_reviews_replace_emojis, app_reviews_replace_urls, clean_review_dates
 class AppReviewCrawler:
     def __init__(self) -> None:
         self.crawled_data = []
@@ -19,6 +19,7 @@ class AppReviewCrawler:
             sort=Sort.NEWEST
         )
         app.logger.info(result)
+        result = clean_review_dates(result)
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
         if(replace_emojis == True):
             result = app_reviews_replace_emojis(result)
