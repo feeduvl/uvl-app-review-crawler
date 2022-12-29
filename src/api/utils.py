@@ -84,7 +84,7 @@ def scale_review_data_set(app_reviews, new_limit):
             scaled.append(app_reviews[i])
         return scaled
     else:
-        return scaled
+        return app_reviews
     
 def filter_valid_reviews(app_reviews, blacklist):
     filtered = []
