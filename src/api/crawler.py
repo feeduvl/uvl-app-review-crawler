@@ -26,7 +26,7 @@ class AppReviewCrawler:
             result = app_reviews_replace_urls(result)
         result = scale_reviews(result, min_length_review)
         result = scale_review_data_set(result, new_limit)       
-        result = filter_valid_reviews(result, blacklist_reviews)
+        #result = filter_valid_reviews(result, blacklist_reviews)
         #app.logger.info(result)
         result = clean_reviews(result)
         app.logger.info(result)
