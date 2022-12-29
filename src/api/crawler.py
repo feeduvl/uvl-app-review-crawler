@@ -31,6 +31,7 @@ class AppReviewCrawler:
         result = clean_reviews(result)
         app.logger.info(result)
         self.crawled_data = result
+        app.logger.info(self.crawled_data)
                     
     def get_documents(self, collection_name):
         documents = []
