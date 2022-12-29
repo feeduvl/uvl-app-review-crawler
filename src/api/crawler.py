@@ -18,7 +18,6 @@ class AppReviewCrawler:
             lang=post_selection,
             sort=Sort.NEWEST
         )
-        app.logger.info(result)
         result = clean_review_dates(result)
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
         if(replace_emojis == True):
@@ -30,9 +29,9 @@ class AppReviewCrawler:
         result = filter_valid_reviews(result, blacklist_reviews)
         #app.logger.info(result)
         result = clean_reviews(result)
-        #app.logger.info(result)
+        app.logger.info(result)
         self.crawled_data = result
-        app.logger.info(self.crawled_data)
+        #app.logger.info(self.crawled_data)
                     
     def get_documents(self, collection_name):
         documents = []
