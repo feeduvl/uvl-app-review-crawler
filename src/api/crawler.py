@@ -26,19 +26,13 @@ class AppReviewCrawler:
         if(replace_urls == True):
             result = app_reviews_replace_urls(result)
         result = scale_reviews(result, min_length_review)
-        app.logger.info("Result data set: ")
-        app.logger.info(result)
-        app.logger.info("min_length_review: {min_length_review}")
-        result = scale_review_data_set(result, new_limit)
-        app.logger.info("Result data set: ")
-        app.logger.info(result)
-        app.logger.info("new_limit: {new_limit}")        
+        result = scale_review_data_set(result, new_limit)       
         result = filter_valid_reviews(result, blacklist_reviews)
         #app.logger.info(result)
         result = clean_reviews(result)
         #app.logger.info(result)
         self.crawled_data = result
-        #app.logger.info(self.crawled_data)
+        app.logger.info(self.crawled_data)
                     
     def get_documents(self, collection_name):
         documents = []
