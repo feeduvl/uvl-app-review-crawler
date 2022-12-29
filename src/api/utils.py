@@ -43,10 +43,11 @@ def clean_reviews(app_reviews):
     return app_reviews
 
 def clean_review_dates(app_reviews):
-    for app in app_reviews:
-        app['at'] = app['at'].replace(day=0, hour=0, minute=0)
-        
-    return app_reviews
+    for i in range(len(app_reviews)):
+        temp_date = app_reviews[i]['at'].replace(hour=0, minute=0, second=0)
+        app_reviews[i]['at'] = temp_date
+
+    return app_reviews   
 
 def filter_reviews_by_date(date_from_str, date_to_str, app_reviews):
     from_date = datetime.strptime(date_from_str, "%m/%d/%Y")
