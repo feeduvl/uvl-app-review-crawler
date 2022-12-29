@@ -20,18 +20,23 @@ class AppReviewCrawler:
         )
         app.logger.info(result)
         result = clean_review_dates(result)
+        for review in result:
+            app.logger.info(review['at'])
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
         if(replace_emojis == True):
             result = app_reviews_replace_emojis(result)
         if(replace_urls == True):
             result = app_reviews_replace_urls(result)
         result = scale_reviews(result, min_length_review)
+        #app.logger.info(result)
         result = scale_review_data_set(result, new_limit)
+        #app.logger.info(result)
         result = filter_valid_reviews(result, blacklist_reviews)
+        #app.logger.info(result)
         result = clean_reviews(result)
-        app.logger.info(result)
+        #app.logger.info(result)
         self.crawled_data = result
-        app.logger.info(self.crawled_data)
+        #app.logger.info(self.crawled_data)
                     
     def get_documents(self, collection_name):
         documents = []
