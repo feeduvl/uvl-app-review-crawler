@@ -27,19 +27,17 @@ class AppReviewCrawler:
         result = scale_reviews(result, min_length_review)
         result = scale_review_data_set(result, new_limit)       
         #result = filter_valid_reviews(result, blacklist_reviews)
-        #app.logger.info(result)
         result = clean_reviews(result)
         app.logger.info(result)
         self.crawled_data = result
-        #app.logger.info(self.crawled_data)
                     
     def get_documents(self, collection_name):
         documents = []
         sep = os.linesep + '###'
         date = datetime.today().strftime('%Y_%m_%d')
-        for dataset in enumerate(self.crawled_data):
+        for i in range(0, len(self.crawled_data)):
             document_id = f'{collection_name}_{date}'
-            text = dataset.get("score") + sep + dataset.get("content") + sep 
+            text = str(self.crawled_data[i]['score']) + sep + self.crawled_data[i]['content'] + sep
             documents.append({"id": document_id, "text": text})
         app.logger.info(documents)
         return documents
