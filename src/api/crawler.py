@@ -20,9 +20,11 @@ class AppReviewCrawler:
         )
         app.logger.info(result)
         result = clean_review_dates(result)
-        for review in result:
-            app.logger.info(review['at'])
+        #for review in result:
+            #app.logger.info(review['at'])
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
+        for i in result:
+            app.logger.info(i['content'])
         if(replace_emojis == True):
             result = app_reviews_replace_emojis(result)
         if(replace_urls == True):
