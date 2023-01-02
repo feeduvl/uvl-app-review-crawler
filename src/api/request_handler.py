@@ -28,6 +28,6 @@ class RequestHandler:
         self.logger.info(f'Starting crawling reviews of {app_id}')
         app_review_crawler = AppReviewCrawler()
         app_review_crawler.crawl(app_id, date_from, date_to, post_selection, new_limit, min_length_reviews, blacklist_posts, replace_emojis, replace_urls)
-        crawled_documents += app_review_crawler.get_documents(app_id)
+        crawled_documents = app_review_crawler.get_documents(app_id)
 
         self.database_handler.insert(dataset_name, crawled_documents, self.logger)

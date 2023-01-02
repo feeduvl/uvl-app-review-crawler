@@ -30,6 +30,8 @@ class AppReviewCrawler:
         result = clean_reviews(result)
         app.logger.info(result)
         self.crawled_data = result
+        app.logger.info("Crawled Data is: ")
+        app.logger.info(self.crawled_data)
                     
     def get_documents(self, collection_name):
         documents = []
@@ -39,5 +41,7 @@ class AppReviewCrawler:
             document_id = f'{collection_name}_{date}'
             text = str(self.crawled_data[i]['score']) + sep + self.crawled_data[i]['content'] + sep
             documents.append({"id": document_id, "text": text})
+        app.logger.info("Documents for saving: ")
         app.logger.info(documents)
+        
         return documents
