@@ -91,9 +91,9 @@ def filter_valid_reviews(app_reviews, blacklist):
     for blacklisted_word in blacklist:
         for i in range(0, len(app_reviews)):
             if blacklisted_word in app_reviews[i]['content']:
-                app_reviews[i]['valid'] = "False"
+                app_reviews[i].update({'valid':"False"})
             else:
-                app_reviews[i]['valid'] = "True"
+                app_reviews[i].update({'valid':"True"})
     for i in app_reviews:
         if i['valid'] == "True":
             filtered.append(i)
