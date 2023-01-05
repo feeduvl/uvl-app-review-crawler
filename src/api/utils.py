@@ -66,7 +66,6 @@ def app_reviews_replace_urls(app_reviews):
 
 def app_reviews_replace_emojis(app_review):     
     for i in range(len(app_review)):
-        del app_review[i]['at']
         app_review[i]['content'] = emoji.get_emoji_regexp().sub('', app_review[i]['content'])        
     return app_review 
 
