@@ -87,6 +87,8 @@ def scale_review_data_set(app_reviews, new_limit):
     
 def filter_valid_reviews(app_reviews, blacklist):
     filtered = []
+    if len(blacklisted_word == 0):
+        return app_reviews
     for blacklisted_word in blacklist:
         for i in range(0, len(app_reviews)):
             if blacklisted_word in app_reviews[i]['content']:
