@@ -19,18 +19,23 @@ class AppReviewCrawler:
             sort=Sort.NEWEST
         )
         result = clean_review_dates(result)
+        app.logger.info("Filtering reviews in valid time frame")
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
         if(replace_emojis == True):
+            app.logger.info("Removing emojis from review texts")
             result = app_reviews_replace_emojis(result)
         if(replace_urls == True):
+            app.logger.info("Removing urls from the review texts")
             result = app_reviews_replace_urls(result)
+        app.logger.info("Choosing reviews with specific length")
         result = scale_reviews(result, min_length_review)
-        result = scale_review_data_set(result, new_limit)       
+        app.logger.info("Handing the desired number of reviews")
+        result = scale_review_data_set(result, new_limit)     
+        app.logger.info("Filtering non-blacklisted reviews")  
         result = filter_valid_reviews(result, blacklist_reviews)
+        app.logger.info("Removing unnecessary data")
         result = clean_reviews(result)
-        app.logger.info(result)
         self.crawled_data = result
-        app.logger.info("Crawled Data is: ")
         app.logger.info(self.crawled_data)
                     
     def get_documents(self, collection_name):
