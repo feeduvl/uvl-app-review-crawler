@@ -20,5 +20,6 @@ def run_crawler():
         
     else:
         app.logger.error('Error: Only Post method implemented')
+        return 'ERROR'
         
     return 'OK'
