@@ -81,6 +81,7 @@ def scale_review_data_set(app_reviews, new_limit):
     if(len(app_reviews) > new_limit):
         for i in range(0, new_limit):
             scaled.append(app_reviews[i])
+        print(len(scaled))
         return scaled
     else:
         return app_reviews
