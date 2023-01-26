@@ -69,7 +69,7 @@ def app_reviews_replace_emojis(app_review):
         app_review[i]['content'] = emoji.get_emoji_regexp().sub('', app_review[i]['content'])        
     return app_review 
 
-def scale_reviews(app_reviews,  min_length):
+def scale_reviews(app_reviews, min_length):
     scaled = []
     for i in range(len(app_reviews)):
         if(len(app_reviews[i]['content']) >= min_length):
