@@ -57,8 +57,6 @@ def filter_reviews_by_date(date_from_str, date_to_str, app_reviews):
         review_date = app_reviews[i]['at']
         print(review_date)
         if(from_date <= review_date <= to_date):
-            print(i)
-            print(app_reviews[i])
             filtered_reviews.append(app_reviews[i])
     return filtered_reviews
 
@@ -76,8 +74,6 @@ def scale_reviews(app_reviews, min_length):
     scaled = []
     for i in range(len(app_reviews)):
         if(len(app_reviews[i]['content']) >= min_length):
-            print(i)
-            print(app_reviews[i])
             scaled.append(app_reviews[i])
     return scaled 
     
