@@ -2,7 +2,7 @@ from datetime import datetime
 import os 
 from google_play_scraper import reviews_all, Sort, reviews
 from src.flask_setup import app 
-from src.api.utils import clean_reviews, filter_reviews_by_date, scale_reviews, filter_valid_reviews, app_reviews_replace_emojis, app_reviews_replace_urls, clean_review_dates
+from src.api.utils import clean_reviews, filter_reviews_by_date, scale_review_data_set, scale_reviews, filter_valid_reviews, app_reviews_replace_emojis, app_reviews_replace_urls, clean_review_dates
 class AppReviewCrawler:
     def __init__(self) -> None:
         self.crawled_data = []
