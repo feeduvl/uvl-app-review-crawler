@@ -109,5 +109,5 @@ def language_filter(app_reviews, language):
             if(detect(app_reviews[i]['content']) == language):
                 filtered.append(app_reviews[i])
         except:
-            app.logger.info(i)
+            continue
     return filtered
