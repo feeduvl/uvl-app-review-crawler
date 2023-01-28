@@ -105,6 +105,9 @@ def filter_valid_reviews(app_reviews, blacklist):
 def language_filter(app_reviews, language):
     filtered = []
     for i in range(0, len(app_reviews)):
-        if(detect(app_reviews[i]['content']) == language):
-            filtered.append(app_reviews[i])
+        try:
+            if(detect(app_reviews[i]['content']) == language):
+                filtered.append(app_reviews[i])
+        except:
+            print(i)
     return filtered
