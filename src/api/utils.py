@@ -8,7 +8,7 @@ import requests
 import re 
 import emoji
 from langdetect import detect
-
+from src.flask_setup import app
 class DatabaseHandler:
     def insert(self, collection_name, documents, logger):
         response = requests.get(f'https://feed-uvl.ifi.uni-heidelberg.de/hitec/repository/concepts/dataset/name/{collection_name}')
@@ -109,5 +109,5 @@ def language_filter(app_reviews, language):
             if(detect(app_reviews[i]['content']) == language):
                 filtered.append(app_reviews[i])
         except:
-            print(i)
+            app.logger.info(i)
     return filtered
