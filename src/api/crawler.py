@@ -26,8 +26,7 @@ class AppReviewCrawler:
             continuation_token=continuation_token # defaults to None(load from the beginning)
         )
         result = clean_review_dates(result)
-        app.logger.info("Filtering reviews in valid time frame")
-        app.logger.info(result)
+        #app.logger.info("Filtering reviews in valid time frame")
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
         if(replace_emojis == True):
             app.logger.info("Removing emojis from review texts")
@@ -35,14 +34,14 @@ class AppReviewCrawler:
         if(replace_urls == True):
             app.logger.info("Removing urls from the review texts")
             result = app_reviews_replace_urls(result)
-        app.logger.info("Choosing reviews with specific length")
+        #app.logger.info("Choosing reviews with specific length")
         result = scale_reviews(result, min_length_review)
-        app.logger.info("Filtering non-blacklisted reviews")  
+        #app.logger.info("Filtering non-blacklisted reviews")  
         result = filter_valid_reviews(result, blacklist_reviews)
-        app.logger.info("Removing unnecessary data")
+        #app.logger.info("Removing unnecessary data")
         result = clean_reviews(result)
         self.crawled_data = result
-        app.logger.info(self.crawled_data)
+        #app.logger.info(self.crawled_data)
                     
     def get_documents(self, collection_name):
         documents = []
@@ -52,7 +51,7 @@ class AppReviewCrawler:
             document_id = f'{collection_name}_{date}'
             text = str(self.crawled_data[i]['score']) + sep + self.crawled_data[i]['content'] + sep
             documents.append({"id": document_id, "text": text})
-        app.logger.info("Documents for saving: ")
-        app.logger.info(documents)
+        #app.logger.info("Documents for saving: ")
+        #app.logger.info(documents)
         
         return documents
