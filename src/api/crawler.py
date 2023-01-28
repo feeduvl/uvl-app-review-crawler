@@ -25,21 +25,31 @@ class AppReviewCrawler:
             app_id,
             continuation_token=continuation_token # defaults to None(load from the beginning)
         )
+        app.logger.info(result)
         result = clean_review_dates(result)
         app.logger.info("Filtering reviews in valid time frame")
+        app.logger.info(result)
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
+        app.logger.info(result)
         if(replace_emojis == True):
             app.logger.info("Removing emojis from review texts")
             result = app_reviews_replace_emojis(result)
+            app.logger.info(result)
         if(replace_urls == True):
             app.logger.info("Removing urls from the review texts")
             result = app_reviews_replace_urls(result)
+            app.logger.info(result)
         app.logger.info("Choosing reviews with specific length")
+        app.logger.info(result)
         result = scale_reviews(result, min_length_review)
+        app.logger.info(result)
         app.logger.info("Filtering non-blacklisted reviews")  
+        app.logger.info(result)
         result = filter_valid_reviews(result, blacklist_reviews)
         app.logger.info("Removing unnecessary data")
+        app.logger.info(result)
         result = clean_reviews(result)
+        app.logger.info(result)
         self.crawled_data = result
         app.logger.info(self.crawled_data)
                     
