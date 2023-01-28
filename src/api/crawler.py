@@ -19,6 +19,7 @@ class AppReviewCrawler:
             sort=Sort.NEWEST
         )
         result = clean_review_dates(result)
+        app.logger.info(result)
         result = language_filter(result, post_selection)
         app.logger.info("Filtering reviews in valid time frame")
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
