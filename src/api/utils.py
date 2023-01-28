@@ -55,8 +55,8 @@ def filter_reviews_by_date(date_from_str, date_to_str, app_reviews):
     filtered_reviews = []
     for i in range(0, len(app_reviews)):
         review_date = app_reviews[i]['at']
-        print(review_date)
         if(from_date <= review_date <= to_date):
+            print(i)
             filtered_reviews.append(app_reviews[i])
     return filtered_reviews
 
