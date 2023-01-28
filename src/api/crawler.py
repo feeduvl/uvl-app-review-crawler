@@ -1,6 +1,6 @@
 from datetime import datetime 
 import os 
-from google_play_scraper import reviews_all, Sort, reviews
+from google_play_scraper import reviews_all, Sort
 from src.flask_setup import app 
 from src.api.utils import clean_reviews, filter_reviews_by_date, scale_review_data_set, scale_reviews, filter_valid_reviews, app_reviews_replace_emojis, app_reviews_replace_urls, clean_review_dates
 class AppReviewCrawler:
@@ -13,17 +13,10 @@ class AppReviewCrawler:
         """Initiate a crawling job for the specified App using an optional number of 
            preprocessing parameters
         """
-        country = {'en': 'us', 'de': "ge"}
-        result, continuation_token = reviews(
+        result = reviews_all(
             app_id,
-            lang=post_selection, 
-            country=country.get(post_selection),
-            sort=Sort.NEWEST, 
-            count=new_limit, 
-        )
-        result, _ = reviews(
-            app_id,
-            continuation_token=continuation_token # defaults to None(load from the beginning)
+            lang=post_selection,
+            sort=Sort.NEWEST
         )
         result = clean_review_dates(result)
         #app.logger.info("Filtering reviews in valid time frame")
@@ -35,7 +28,9 @@ class AppReviewCrawler:
             app.logger.info("Removing urls from the review texts")
             result = app_reviews_replace_urls(result)
         #app.logger.info("Choosing reviews with specific length")
-        result = scale_reviews(result, min_length_review)
+        result = scale_reviews(result, min_length_review) 
+        #app.logger.info("Handing the desired number of reviews")
+        result = scale_review_data_set(result, new_limit)     
         #app.logger.info("Filtering non-blacklisted reviews")  
         result = filter_valid_reviews(result, blacklist_reviews)
         #app.logger.info("Removing unnecessary data")
