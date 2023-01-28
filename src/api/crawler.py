@@ -2,7 +2,7 @@ from datetime import datetime
 import os 
 from google_play_scraper import reviews_all, Sort
 from src.flask_setup import app 
-from src.api.utils import clean_reviews, filter_reviews_by_date, scale_review_data_set, scale_reviews, filter_valid_reviews, app_reviews_replace_emojis, app_reviews_replace_urls, clean_review_dates
+from src.api.utils import clean_reviews, filter_reviews_by_date, scale_review_data_set, scale_reviews, filter_valid_reviews, app_reviews_replace_emojis, app_reviews_replace_urls, clean_review_dates, language_filter
 class AppReviewCrawler:
     def __init__(self) -> None:
         self.crawled_data = []
@@ -13,14 +13,13 @@ class AppReviewCrawler:
         """Initiate a crawling job for the specified App using an optional number of 
            preprocessing parameters
         """
-        country = {'de': 'de', 'en': 'us'}
         result = reviews_all(
             app_id,
             lang=post_selection,
-            country=country.get(post_selection),
             sort=Sort.NEWEST
         )
         result = clean_review_dates(result)
+        result = language_filter(result, post_selection)
         #app.logger.info("Filtering reviews in valid time frame")
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
         if(replace_emojis == True):
