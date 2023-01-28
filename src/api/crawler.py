@@ -13,9 +13,11 @@ class AppReviewCrawler:
         """Initiate a crawling job for the specified App using an optional number of 
            preprocessing parameters
         """
+        country = {'de': 'de', 'en': 'us'}
         result = reviews_all(
             app_id,
             lang=post_selection,
+            country=country.get(post_selection),
             sort=Sort.NEWEST
         )
         result = clean_review_dates(result)
