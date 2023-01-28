@@ -25,9 +25,7 @@ class AppReviewCrawler:
             app_id,
             continuation_token=continuation_token # defaults to None(load from the beginning)
         )
-        app.logger.info(result)
         result = clean_review_dates(result)
-        app.logger.info(result)
         app.logger.info("Filtering reviews in valid time frame")
         #app.logger.info(result)
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
