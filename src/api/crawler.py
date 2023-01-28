@@ -29,15 +29,12 @@ class AppReviewCrawler:
         app.logger.info("Filtering reviews in valid time frame")
         app.logger.info(result)
         result = filter_reviews_by_date(from_date_str, to_date_str, result)
-        app.logger.info(result)
         if(replace_emojis == True):
             app.logger.info("Removing emojis from review texts")
             result = app_reviews_replace_emojis(result)
-            app.logger.info(result)
         if(replace_urls == True):
             app.logger.info("Removing urls from the review texts")
             result = app_reviews_replace_urls(result)
-            app.logger.info(result)
         app.logger.info("Choosing reviews with specific length")
         result = scale_reviews(result, min_length_review)
         app.logger.info("Filtering non-blacklisted reviews")  
