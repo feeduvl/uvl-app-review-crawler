@@ -8,7 +8,7 @@ import requests
 import re 
 import emoji
 from langdetect import detect
-from src.flask_setup import app
+
 class DatabaseHandler:
     def insert(self, collection_name, documents, logger):
         response = requests.get(f'https://feed-uvl.ifi.uni-heidelberg.de/hitec/repository/concepts/dataset/name/{collection_name}')
@@ -30,7 +30,11 @@ class DatabaseHandler:
             existing_collection['documents'] += documents
             request = requests.post('https://feed-uvl.ifi.uni-heidelberg.de/hitec/repository/concepts/store/dataset/', json=existing_collection)
             return request.status_code
-        
+
+""" 
+These are helper functions for the pre-processing of the collected review datasets
+"""
+
 def clean_reviews(app_reviews):
     for app in app_reviews:
         del app['reviewId']
