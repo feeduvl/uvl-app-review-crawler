@@ -86,7 +86,6 @@ def scale_review_data_set(app_reviews, new_limit):
     if(len(app_reviews) > new_limit):
         for i in range(0, new_limit):
             scaled.append(app_reviews[i])
-        print(len(scaled))
         return scaled
     else:
         return app_reviews
@@ -97,10 +96,16 @@ def filter_valid_reviews(app_reviews, blacklist):
         return app_reviews
     for blacklisted_word in blacklist:
         for i in range(0, len(app_reviews)):
-            if blacklisted_word in app_reviews[i]['content']:
-                app_reviews[i].update({'valid':"False"})
-            else:
-                app_reviews[i].update({'valid':"True"})
+            if "valid" not in app_reviews[i]:
+                if blacklisted_word in app_reviews[i]['content']:
+                    app_reviews[i].update({'valid':"False"})
+                else:
+                    app_reviews[i].update({'valid':"True"})
+            elif app_reviews[i]["valid"] == "True":
+                if blacklisted_word in app_reviews[i]['content']:
+                    app_reviews[i].update({'valid':"False"})
+                else:
+                    app_reviews[i].update({'valid':"True"})
     for i in app_reviews:
         if i['valid'] == "True":
             filtered.append(i)
@@ -113,5 +118,5 @@ def language_filter(app_reviews, language):
             if(detect(app_reviews[i]['content']) == language):
                 filtered.append(app_reviews[i])
         except:
-            continue
+            print("Not a natural-language text")
     return filtered
