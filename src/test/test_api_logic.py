@@ -509,7 +509,7 @@ class TestPreprocessing(unittest.TestCase):
         
         self.assertEqual(len(reviews), 1)        
         
-    def test_language_filter_german(self):
+    def test_language_filter_english(self):
         reviews = [
         {
             'userName': "Alyssa Williams", 
