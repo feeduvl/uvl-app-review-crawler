@@ -8,7 +8,6 @@ import requests
 import re 
 import emoji
 from langdetect import detect
-from langdetect.lang_detect_exception import LangDetectException
 
 class DatabaseHandler:
     def insert(self, collection_name, documents, logger):
@@ -118,6 +117,6 @@ def language_filter(app_reviews, language):
         try:
             if detect(app_reviews[i]['content']) == language:
                 filtered.append(app_reviews[i])
-        except LangDetectException:
+        except:
             print("Not a natural-language text")
     return filtered
