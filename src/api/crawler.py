@@ -45,7 +45,7 @@ class AppReviewCrawler:
         sep = os.linesep + '###'
         date = datetime.today().strftime('%Y_%m_%d')
         for i in range(0, len(self.crawled_data)):
-            document_id = f'{collection_name}_{date}'
+            document_id = f'"Review"_{i}_{collection_name}_{date}'
             text = str(self.crawled_data[i]['score']) + sep + self.crawled_data[i]['content'] + sep
             documents.append({"id": document_id, "text": text})
         app.logger.info("Documents for saving: ")
