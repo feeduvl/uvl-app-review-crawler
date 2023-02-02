@@ -118,5 +118,5 @@ def language_filter(app_reviews, language):
             if detect(app_reviews[i]['content']) == language:
                 filtered.append(app_reviews[i])
         except:
-            print("Not a natural-language text")
+            continue
     return filtered
